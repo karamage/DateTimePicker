@@ -76,6 +76,24 @@ import UIKit
         }
     }
     
+    public var doneButtonTitleColor: UIColor = UIColor.white {
+        didSet {
+            doneButton.setTitleColor(doneButtonTitleColor, for: .normal)
+        }
+    }
+    
+    public var doneButtonTitleFont: UIFont = UIFont.boldSystemFont(ofSize: 13) {
+        didSet {
+            doneButton.titleLabel?.font = doneButtonTitleFont
+        }
+    }
+    
+    public var doneButtonBackgroundColor: UIColor = UIColor(red: 0, green: 22.0/255.0, blue: 39.0/255.0, alpha: 0.5) {
+        didSet {
+            doneButton.backgroundColor = doneButtonBackgroundColor
+        }
+    }
+    
     public var is12HourFormat = false {
         didSet {
             configureView()
@@ -230,9 +248,9 @@ import UIKit
         doneButton = UIButton(type: .system)
         doneButton.frame = CGRect(x: 10, y: contentView.frame.height - 10 - 44, width: contentView.frame.width - 20, height: 44)
         doneButton.setTitle(doneButtonTitle, for: .normal)
-        doneButton.setTitleColor(.white, for: .normal)
-        doneButton.backgroundColor = darkColor.withAlphaComponent(0.5)
-        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+        doneButton.setTitleColor(doneButtonTitleColor, for: .normal)
+        doneButton.backgroundColor = doneButtonBackgroundColor
+        doneButton.titleLabel?.font = doneButtonTitleFont
         doneButton.layer.cornerRadius = 3
         doneButton.layer.masksToBounds = true
         doneButton.addTarget(self, action: #selector(DateTimePicker.dismissView(sender:)), for: .touchUpInside)
